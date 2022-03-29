@@ -29,9 +29,7 @@ Route::post('login', [SessionsController::class, 'store'])->middleware('guest');
 
 Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth');
 
-// todo: git
 Route::get('user/{user}/posts/', [UserPostController::class, 'index'])->middleware('auth');
-
 Route::middleware('auth')->group(function () {
     Route::resource('user/posts', UserPostController::class)->except('show', 'index');
 });

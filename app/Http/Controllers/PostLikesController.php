@@ -16,7 +16,7 @@ class PostLikesController extends Controller
 
     public function destroy(Post $post)
     {
-        $post->like(auth()->user());
+        $post->dislike(auth()->user());
 
         return back()->with('success', 'Post disliked!');
     }

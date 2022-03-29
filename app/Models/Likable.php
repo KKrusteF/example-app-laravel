@@ -32,6 +32,11 @@ trait Likable
             ->count();
     }
 
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+
     public function dislike($user = null)
     {
         return $this->like($user, false);
@@ -49,13 +54,15 @@ trait Likable
         );
     }
 
-    public function likes()
+    public function dislikesCount()
     {
-        return $this->hasMany(Like::class)->where('liked', true);
+        return $this->likes()
+            ->where('liked', false);
     }
 
-    public function dislikes()
+    public function likesCount()
     {
-        return $this->hasMany(Like::class)->where('liked', false);
+        return $this->likes()
+            ->where('liked', true);
     }
 }

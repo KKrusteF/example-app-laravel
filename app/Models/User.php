@@ -36,6 +36,7 @@ class User extends Authenticatable
         $this->attributes['password'] = bcrypt($password);
     }
 
+    // random comment to test
     public function posts()
     {
         return $this->hasMany(Post::class);

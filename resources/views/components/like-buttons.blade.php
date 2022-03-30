@@ -4,7 +4,7 @@
     >
         @csrf
 
-        <div class="flex items-center mr-4 {{ $post->isLikedBy(Auth::user()) ? 'text-green-500' : 'text-gray-500' }}">
+        <div class="flex items-center mr-4 {{ $post->isLikedBy(auth()->user()) ? 'text-green-500' : 'text-gray-500' }}">
             <svg viewBox="0 0 20 20"
                  class="mr-1 w-3"
             >
@@ -36,7 +36,7 @@
     >
         @csrf
 
-        <div class="flex items-center {{ $post->isDislikedBy(Auth::user()) ? 'text-red-500' : 'text-gray-500' }}">
+        <div class="flex items-center {{ $post->isDislikedBy(auth()->user()) ? 'text-red-500' : 'text-gray-500' }}">
             <svg viewBox="0 0 20 20"
                  class="mr-1 w-3"
             >

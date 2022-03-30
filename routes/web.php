@@ -4,18 +4,16 @@ use App\Http\Controllers\AdminPostController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PostCommentsController;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\PostLikesController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\UserPostController;
-use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PostController::class, 'index'])->name('home');
 Route::get('posts/{post:slug}', [PostController::class, 'show'])->name('post.show');
 
-Route::post('posts/{post}/like',[PostLikesController::class,'store']);
-Route::delete('posts/{post}/like',[PostLikesController::class,'destroy']);
+Route::post('posts/{post}/like', [PostController::class, 'like']);
+Route::post('posts/{post}/dislike', [PostController::class, 'dislike']);
 
 Route::post('posts/{post:slug}/comments', [PostCommentsController::class, 'store']);
 
@@ -33,12 +31,6 @@ Route::get('user/{user}/posts/', [UserPostController::class, 'index'])->middlewa
 Route::middleware('auth')->group(function () {
     Route::resource('user/posts', UserPostController::class)->except('show', 'index');
 });
-
-//Route::get('user/posts/create', [UserPostController::class, 'create'])->middleware('auth');
-//Route::post('user/posts', [UserPostController::class, 'store'])->middleware('auth');
-//Route::get('user/posts/{post}/edit', [UserPostController::class, 'edit'])->middleware('auth');
-//Route::patch('user/posts/{post}', [UserPostController::class, 'update'])->middleware('auth');
-//Route::delete('user/posts/{post}', [UserPostController::class, 'destroy'])->middleware('auth');
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('admin/posts', AdminPostController::class)->except('show');

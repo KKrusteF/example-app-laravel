@@ -8,7 +8,7 @@ trait Likable
 {
     public function isLikedBy(User $user)
     {
-        return (bool) $user->likes
+        return (bool)$user->likes
             ->where('post_id', $this->id)
             ->where('liked', true)
             ->count();
@@ -16,7 +16,7 @@ trait Likable
 
     public function isDislikedBy(User $user)
     {
-        return (bool) $user->likes
+        return (bool)$user->likes
             ->where('post_id', $this->id)
             ->where('liked', false)
             ->count();
@@ -27,16 +27,16 @@ trait Likable
         return $this->hasMany(Like::class);
     }
 
-    public function dislike($user = null)
+    public function dislike($user)
     {
         return $this->like($user, false);
     }
 
-    public function like($user = null, $liked = true)
+    public function like($user, $liked = true)
     {
         return $this->likes()->updateOrCreate(
             [
-                'user_id' => $user ? $user->id : auth()->id(),
+                'user_id' => $user->id,
             ],
             [
                 'liked' => $liked,
@@ -47,12 +47,14 @@ trait Likable
     public function dislikesCount()
     {
         return $this->likes()
-            ->where('liked', false);
+            ->where('liked', false)
+            ->count();
     }
 
     public function likesCount()
     {
         return $this->likes()
-            ->where('liked', true);
+            ->where('liked', true)
+            ->count();
     }
 }

@@ -4,7 +4,7 @@
     >
         @csrf
 
-        <div class="flex items-center mr-4 {{ $post->isLikedBy(Auth::user()) ? 'text-blue-500' : 'text-gray-500' }}">
+        <div class="flex items-center mr-4 {{ $post->isLikedBy(Auth::user()) ? 'text-green-500' : 'text-gray-500' }}">
             <svg viewBox="0 0 20 20"
                  class="mr-1 w-3"
             >
@@ -26,18 +26,17 @@
             <button type="submit"
                     class="text-xs"
             >
-                {{ @count($post->likesCount) ?: 0 }}
+                {{ $post->likesCount() ?: 0 }}
             </button>
         </div>
     </form>
 
     <form method="POST"
-          action="/posts/{{ $post->id }}/like"
+          action="/posts/{{ $post->id }}/dislike"
     >
         @csrf
-        @method('DELETE')
 
-        <div class="flex items-center {{ $post->isDislikedBy(Auth::user()) ? 'text-blue-500' : 'text-gray-500' }}">
+        <div class="flex items-center {{ $post->isDislikedBy(Auth::user()) ? 'text-red-500' : 'text-gray-500' }}">
             <svg viewBox="0 0 20 20"
                  class="mr-1 w-3"
             >
@@ -59,7 +58,7 @@
             <button type="submit"
                     class="text-xs"
             >
-                {{ @count($post->dislikesCount) ?: 0 }}
+                {{ $post->dislikesCount() ?: 0 }}
             </button>
         </div>
     </form>

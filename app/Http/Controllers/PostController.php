@@ -25,4 +25,18 @@ class PostController extends Controller
             'post' => $post
         ]);
     }
+
+    public function like(Post $post)
+    {
+        $post->like(auth()->user());
+
+        return back()->with('success', 'Post liked!');
+    }
+
+    public function dislike(Post $post)
+    {
+        $post->dislike(auth()->user());
+
+        return back()->with('success', 'Post disliked!');
+    }
 }

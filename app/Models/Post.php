@@ -17,7 +17,7 @@ class Post extends Model
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ?? false, fn($query, $search) => $query
-                ->where(fn($query) => $query
+            ->where(fn($query) => $query
                 ->where('title', 'like', '%' . $search . '%')
                 ->orWhere('body', 'like', '%' . $search . '%')
             )
@@ -26,13 +26,13 @@ class Post extends Model
         $query->when($filters['category'] ?? false, fn($query, $category) => $query
             ->whereHas('category', fn($query) => $query
                 ->where('slug', $category)
-        )
+            )
         );
 
-        $query->when($filters['author'] ?? false, fn($query, $author) =>
-        $query->whereHas('author', fn($query) => $query
-            ->where('username', $author)
-        )
+        $query->when($filters['author'] ?? false, fn($query, $author) => $query
+            ->whereHas('author', fn($query) => $query
+                ->where('username', $author)
+            )
         );
     }
 

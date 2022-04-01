@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
-use function PHPUnit\Framework\isEmpty;
 
 class UserController extends Controller
 {
@@ -26,8 +25,7 @@ class UserController extends Controller
     {
         $validated = $request->validate([
             'username' => [Rule::unique('users', 'username')->ignore($user)],
-//            'password'=> [Password::min(8)->letters()->numbers()],
-            'password'=> 'required_if:password,""',
+            'password'=> ['required', Password::min(8)->letters()->numbers()],
             'avatar' => 'image'
         ]);
 

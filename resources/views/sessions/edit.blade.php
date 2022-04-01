@@ -10,8 +10,6 @@
 
                     <x-form.input name="username" type="username" :value="old('username', $user->username)"/>
                     <x-form.input name="password" type="password" autocomplete="current-password" />
-{{--                    <x-form.input name="new password" type="password" autocomplete="current-password" />--}}
-{{--                    <x-form.input name="confirm password" type="password" autocomplete="current-password" />--}}
 
                     <div class="flex mt-6">
                         <div class="flex-1">

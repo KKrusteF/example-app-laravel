@@ -30,6 +30,20 @@ Route::middleware('guest')->prefix('loginn')->group(function () {
     Route::post('', [SessionsController::class, 'store']);
 });
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth');
 
 Route::get('user/{user}/posts', [UserPostController::class, 'index'])->middleware('auth');

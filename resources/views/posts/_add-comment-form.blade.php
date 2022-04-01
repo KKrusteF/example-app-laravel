@@ -4,10 +4,10 @@
             @csrf
 
             <header class="flex items-center">
-                <img src="https://i.pravatar.cc/60?u={{ auth()->id() }}"
-                     alt="" width="60"
+                <img src="{{ asset('storage/' . $post->author->avatar ) }}"
+                     alt="{{ $post->author->username }}'s post" width="60"
                      height="60"
-                     class="rounded-xl">
+                     class="rounded-full">
 
                 <h2 class="ml-4">Want to participate?</h2>
             </header>

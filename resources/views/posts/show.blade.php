@@ -11,7 +11,7 @@
                     </p>
 
                     <div class="flex items-center lg:justify-center text-sm mt-4">
-                        <img src="https://i.pravatar.cc/60?u={{ $post->user_id }}" alt="Lary avatar" class="rounded-full">
+                        <img src="{{ asset('storage/' . $post->author->avatar ) }}" width="60" height="60" alt="{{ $post->author->username }}'s avatar" class="rounded-full">
                         <div class="ml-3 text-left">
                             <h5 class="font-bold">
                                 <a href="/?author={{ $post->author->username }}">

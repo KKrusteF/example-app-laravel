@@ -35,7 +35,7 @@ class PostController extends Controller
 
     public function dislike(Post $post)
     {
-        $post->dislike(auth()->user());
+        $post->like(auth()->user(), false);
 
         return back()->with('success', 'Post disliked!');
     }

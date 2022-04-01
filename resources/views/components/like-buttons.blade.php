@@ -26,7 +26,7 @@
             <button type="submit"
                     class="text-xs"
             >
-                {{ $post->likesCount() ?: 0 }}
+                {{ $post->likesCount() }}
             </button>
         </div>
     </form>
@@ -58,7 +58,7 @@
             <button type="submit"
                     class="text-xs"
             >
-                {{ $post->dislikesCount() ?: 0 }}
+                {{ $post->dislikesCount() }}
             </button>
         </div>
     </form>

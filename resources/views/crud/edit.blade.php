@@ -13,7 +13,7 @@
 
                         <div class="flex mt-6">
                             <div class="flex-1">
-                                <x-form.input name="thumbnail" type="file" :value="old('slug', $post->title)"/>
+                                <x-form.input name="thumbnail" type="file" :value="old('thumbnail', $post->thumbnail)"/>
                             </div>
 
                             <img src="{{ asset('storage/' . $post->thumbnail ) }}" alt="" class="rounded-xl ml-6"

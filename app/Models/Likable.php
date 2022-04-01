@@ -27,11 +27,6 @@ trait Likable
         return $this->hasMany(Like::class);
     }
 
-    public function dislike($user)
-    {
-        return $this->like($user, false);
-    }
-
     public function like($user, $liked = true)
     {
         return $this->likes()->updateOrCreate(

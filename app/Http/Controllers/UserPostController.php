@@ -51,7 +51,6 @@ class UserPostController extends Controller
 
         $validated = $request->validated();
 
-
         if ($validated['thumbnail'] ?? false) {
             $this->deleteThumbnail($post);
             $validated['thumbnail'] = request()->file('thumbnail')->store('thumbnails');

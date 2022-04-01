@@ -37,6 +37,8 @@
                 </x-dropdown-item>
                 <x-dropdown-item href="/user/posts/create" :active="request()->is('user/posts/create')">New Post
                 </x-dropdown-item>
+                <x-dropdown-item href="/user/{{ auth()->user()->id }}/edit" :active="request()->is('user/{{ auth()->user()->id }}/edit')">Edit profile
+                </x-dropdown-item>
 
                 <x-dropdown-item href="#" x-data="{}" @click.prevent="document.querySelector('#logout-form').submit()">
                     Log out

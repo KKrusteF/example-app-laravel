@@ -29,8 +29,6 @@ Route::middleware('guest')->prefix('loginn')->group(function () {
     Route::get('', [SessionsController::class, 'create']);
     Route::post('', [SessionsController::class, 'store']);
 });
-Route::get('login', [SessionsController::class, 'create'])->middleware('guest');
-Route::post('login', [SessionsController::class, 'store'])->middleware('guest');
 
 Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth');
 

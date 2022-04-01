@@ -25,10 +25,13 @@ Route::post('newsletter', NewsletterController::class);
 Route::get('register', [RegisterController::class, 'create'])->middleware('guest');
 Route::post('register', [RegisterController::class, 'store'])->middleware('guest');
 
-Route::middleware('guest')->prefix('loginn')->group(function () {
+Route::middleware('guest')->prefix('loginn12345')->group(function () {
+
     Route::get('', [SessionsController::class, 'create']);
     Route::post('', [SessionsController::class, 'store']);
+
 });
+
 
 Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth');
 

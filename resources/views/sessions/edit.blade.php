@@ -8,8 +8,16 @@
                     @csrf
                     @method('PUT')
 
+                    <x-form.input name="name" type="name" :value="old('name', $user->name)"/>
                     <x-form.input name="username" type="username" :value="old('username', $user->username)"/>
+                    <x-form.input name="current_password" type="password" autocomplete="current-password" />
                     <x-form.input name="password" type="password" autocomplete="current-password" />
+<<<<<<< Updated upstream
+{{--                    <x-form.input name="new password" type="password" autocomplete="current-password" />--}}
+{{--                    <x-form.input name="confirm password" type="password" autocomplete="current-password" />--}}
+=======
+                    <x-form.input name="password_confirmation" type="password" autocomplete="current-password" />
+>>>>>>> Stashed changes
 
                     <div class="flex mt-6">
                         <div class="flex-1">

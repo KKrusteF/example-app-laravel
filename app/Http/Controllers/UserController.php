@@ -25,16 +25,6 @@ class UserController extends Controller
 
     public function update(User $user, ValidateUserRequest $request)
     {
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-        $validated = $request->validate([
-            'username' => [Rule::unique('users', 'username')->ignore($user)],
-            'password'=> ['required', Password::min(8)->letters()->numbers()],
-            'avatar' => 'image'
-        ]);
-=======
-=======
->>>>>>> 17259f9 (Fixed a but with password validation)
         $validated = $request->validated();
 
         if (!Hash::check($validated['current_password'], $user->password) && !$validated['current_password'] == null) {

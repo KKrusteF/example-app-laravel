@@ -33,16 +33,21 @@ class UserController extends Controller
                 ->withErrors(['current_password' => 'Your provided credentials could not be verified.']);
         }
 
+        $validated = $request->safe()->except(['current_password', 'password_confirmation']);
+
         if ($validated['avatar'] ?? false) {
-            $path = public_path('storage/' . $user->avatar);
-            File::delete($path);
+            $this->deleteAvatar($user);
             $validated['avatar'] = request()->file('avatar')->store('avatar');
         }
-
-        $validated = $request->safe()->except(['current_password', 'password_confirmation']);
 
         $user->update($validated);
 
         return back()->with('success', 'Profile updated!');
+    }
+
+    private function deleteAvatar($user)
+    {
+        $path = public_path('storage/' . $user->avatar);
+        File::delete($path);
     }
 }

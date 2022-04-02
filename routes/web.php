@@ -24,15 +24,10 @@ Route::post('newsletter', NewsletterController::class);
 Route::get('register', [RegisterController::class, 'create'])->middleware('guest');
 Route::post('register', [RegisterController::class, 'store'])->middleware('guest');
 
-<<<<<<< Updated upstream
-Route::get('login', [SessionsController::class, 'create'])->middleware('guest');
-Route::post('login', [SessionsController::class, 'store'])->middleware('guest');
-=======
 Route::middleware('guest')->prefix('login')->group(function () {
     Route::get('', [SessionsController::class, 'create']);
     Route::post('', [SessionsController::class, 'store']);
 });
->>>>>>> Stashed changes
 
 Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth');
 

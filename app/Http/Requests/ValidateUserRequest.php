@@ -30,13 +30,13 @@ class ValidateUserRequest extends FormRequest
             'username' => [Rule::unique('users', 'username')
                 ->ignore($this->user)],
             'avatar' => 'image',
-            'current_password' => 'sometimes',
+            'current_password' => 'sometimes|required_with:password',
             'password' => ['confirmed',
                 Password::min(8)
                     ->letters()
                     ->numbers()
                     ->sometimes()],
-            'password_confirmation' => 'sometimes',
+            'password_confirmation' => 'same:password|required_with:current_password',
         ];
     }
 }

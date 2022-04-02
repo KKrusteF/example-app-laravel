@@ -25,6 +25,7 @@ class UserController extends Controller
 
     public function update(User $user, ValidateUserRequest $request)
     {
+<<<<<<< HEAD
 <<<<<<< Updated upstream
         $validated = $request->validate([
             'username' => [Rule::unique('users', 'username')->ignore($user)],
@@ -32,6 +33,8 @@ class UserController extends Controller
             'avatar' => 'image'
         ]);
 =======
+=======
+>>>>>>> 17259f9 (Fixed a but with password validation)
         $validated = $request->validated();
 
         if (!Hash::check($validated['current_password'], $user->password) && !$validated['current_password'] == null) {
@@ -39,10 +42,10 @@ class UserController extends Controller
                 ->withInput()
                 ->withErrors(['current_password' => 'Your provided credentials could not be verified.']);
         }
->>>>>>> Stashed changes
 
         if ($validated['avatar'] ?? false) {
-            $this->deleteAvatar($user);
+            $path = public_path('storage/' . $user->avatar);
+            File::delete($path);
             $validated['avatar'] = request()->file('avatar')->store('avatar');
         }
 
@@ -51,11 +54,5 @@ class UserController extends Controller
         $user->update($validated);
 
         return back()->with('success', 'Profile updated!');
-    }
-
-    private function deleteAvatar($user) {
-        //todo: check if avatar is default and do not delete it
-        $path = public_path('storage/' . $user->avatar);
-        File::delete($path);
     }
 }
